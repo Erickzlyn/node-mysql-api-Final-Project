@@ -129,6 +129,7 @@ async function resetPassword({ token, password }: any) {
     account.passwordHash = await hash(password);
     account.passwordReset = Date.now();
     account.resetToken = null;
+    account.resetTokenExpires = null;
     await account.save();
 }
 
