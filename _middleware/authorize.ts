@@ -2,7 +2,7 @@ import { expressjwt } from 'express-jwt';
 import db from '../_helpers/db';
 import config from '../config.json';
 
-const { secret } = config;
+const secret = process.env.JWT_SECRET || config.secret;
 
 export default function authorize(roles: any = []) {
     if (typeof roles === 'string') {

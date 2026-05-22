@@ -9,7 +9,12 @@ export default db;
 initialize();
 
 async function initialize() {
-    const { host, port, user, password, database } = config.database;
+    // Read from environment variables with fallback to config.json
+    const host = process.env.DB_HOST || config.database.host;
+    const port = parseInt(process.env.DB_PORT || config.database.port);
+    const user = process.env.DB_USER || config.database.user;
+    const password = process.env.DB_PASSWORD || config.database.password;
+    const database = process.env.DB_NAME || config.database.database;
 
     // Connect directly — DB already exists on FreeSQLDatabase
     const sequelize = new Sequelize(database, user, password, {
