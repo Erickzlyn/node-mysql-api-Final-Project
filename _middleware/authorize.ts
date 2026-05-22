@@ -18,9 +18,10 @@ export default function authorize(roles: any = []) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }
 
-            req.auth.role = account.role;
+            req.user = req.auth;
+            req.user.role = account.role;
             const refreshTokens = await account.getRefreshTokens();
-            req.auth.ownsToken = (token: any) => !!refreshTokens.find((x: any) => x.token === token);
+            req.user.ownsToken = (token: any) => !!refreshTokens.find((x: any) => x.token === token);
             next();
         }
     ];
