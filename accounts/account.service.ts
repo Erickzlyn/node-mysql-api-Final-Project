@@ -221,7 +221,7 @@ function basicDetails(account: any) {
 async function sendVerificationEmail(account: any, origin: any) {
     let message;
     if (origin) {
-        const verifyUrl = `https://angular-21-auth-boilerplate-9etv.onrender.com/account/verify-email?token=${account.verificationToken}`;
+        const verifyUrl = `${origin}/account/verify-email?token=${account.verificationToken}`;
         message = `<p>Please click the below link to verify your email address:</p>
                    <p><a href="${verifyUrl}">${verifyUrl}</a></p>`;
     } else {
@@ -241,7 +241,7 @@ async function sendVerificationEmail(account: any, origin: any) {
 async function sendAlreadyRegisteredEmail(email: any, origin: any) {
     let message;
     if (origin) {
-        message = `<p>If you don't know your password please visit the <a href="https://angular-21-auth-boilerplate-9etv.onrender.com/account/forgot-password">forgot password</a> page.</p>`;
+        message = `<p>If you don't know your password please visit the <a href="${origin}/account/forgot-password">forgot password</a> page.</p>`;
     } else {
         message = `<p>If you don't know your password you can reset it via the <code>/account/forgot-password</code> api route.</p>`;
     }
@@ -258,7 +258,7 @@ async function sendAlreadyRegisteredEmail(email: any, origin: any) {
 async function sendPasswordResetEmail(account: any, origin: any) {
     let message;
     if (origin) {
-        const resetUrl = `https://angular-21-auth-boilerplate-9etv.onrender.com/account/reset-password?token=${account.resetToken}`;
+        const resetUrl = `${origin}/account/reset-password?token=${account.resetToken}`;
         message = `<p>Please click the below link to reset your password, the link will be valid for 1 day:</p>
                    <p><a href="${resetUrl}">${resetUrl}</a></p>`;
     } else {
