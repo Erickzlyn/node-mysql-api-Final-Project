@@ -1,0 +1,12 @@
+{
+    "database": {
+        "host": "sql12.freesqldatabase.com",
+        "port": 3306,
+        "user": "sql12827725",
+        "password": "HYxThAkEbk",
+        "database": "sql12827725"
+    },
+    "secret": "SUPER_SECRET_KEY_REPLACE_ME_IN_PRODUCTION",
+    "emailFrom": "onboarding@resend.dev",
+    "resendApiKey": "re_AqCRvDKP_6df79Q2MtQcQoYL3UEGF3qWp"
+}
