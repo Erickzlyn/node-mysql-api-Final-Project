@@ -70,6 +70,7 @@ async function register(params, origin) {
     const isFirstAccount = (await db_1.default.Account.count()) === 0;
     account.role = isFirstAccount ? role_1.default.Admin : role_1.default.User;
     account.verificationToken = randomTokenString();
+    account.verified = Date.now();
     account.passwordHash = await hash(params.password);
     await account.save();
     await sendVerificationEmail(account, origin);
