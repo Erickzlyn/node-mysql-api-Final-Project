@@ -13,8 +13,22 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // CORS configuration for production
+// CORS_ORIGIN can be a single URL or comma-separated list of URLs
+// e.g. "https://your-app.vercel.app,https://your-old-app.onrender.com"
+const allowedOrigins = process.env.CORS_ORIGIN
+    ? process.env.CORS_ORIGIN.split(',').map((o: string) => o.trim()).filter(Boolean)
+    : [];
+
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN || true,
+    origin: allowedOrigins.length > 0
+        ? (origin: any, callback: any) => {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error(`CORS: origin '${origin}' not allowed`));
+            }
+          }
+        : true,   // allow all origins if CORS_ORIGIN is not set
     credentials: true
 };
 
